@@ -1,0 +1,48 @@
+THIS IS A LIST OF NEARLY ALL THE PROGRAMS I HAVE INSTALLED IN MY COMPUTER
+I HAVE MADE THIS LIST SO I CAN LOOK UP WHAT PROGRAMS AND PACKAGES I HAD
+INSTALLED IN MY COMPUTER AND INSTALL THEM AFTER I FORMAT
+-------------------------------------------------------------------------
+
+ACCESORY
+--------
+
+Docky
+|\This is a program that puts a little dock in the desktop so you can
+||launch and see what programs are active
+||You can install it via PPA:
+||add-apt-repository ppa:docky-core/stable
+||or
+||add-apt-repository ppa:docky-core/ppa
+||With the first one you can get the stable version of docky, and with
+||the second one the development version of docky. I have the second.
+
+Gjiten
+|\A japanese dictionary for linux, but it hasn't been updated for years
+||now. You can find and add updated dictionaries, though.
+
+Redshift
+|\This is a little utility that changes the temperature of the screen
+||during the day so that it doesn't annoy you.
+||It also have a PPA:
+||add-apt-repository ppa:jonls/redshift-ppa
+
+
+
+
+
+SCIENCE PROGRAMS AND RELATED
+----------------------------
+
+QtiPlot
+|\A program similar to Origin but free that can be used to analize data
+||plot graphs, fix data to functions and that kind of scientific things (^_')
+||If you google "QtiPlot PPA" it says that there is a PPA:
+||add-apt-repository ppa:showard314/qtiplot-ppa
+||But it doesn't work right now.
+
+Stellarium
+|\This is a program that can be used to know the position of stars and
+||planets in the sky at any time. It has a really big database, and you
+||can download even bigger ones.
+
+
