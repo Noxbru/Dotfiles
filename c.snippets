@@ -123,7 +123,7 @@ snippet fpr
 	fprintf(${1:stderr},"${2:%s}\n"${3});${4}
 # sprintf made by Noxbru
 snippet spr
-	fprintf(${1},"${2:%s}\n"${3});${4}
+	sprintf(${1},"${2:%s}\n"${3});${4}
 # scanf made by Noxbru
 snippet sf
 	scanf("${1:%s}\n",&${2});${3}
@@ -154,23 +154,28 @@ snippet gpl
 	 * 
 	 * Copyright (C) ${1:Author}, `strftime("%Y")`
 	 */
+# the argument structure
+snippet args
+	typedef struct args_t
+	{
+		${1:first argument}
+	} args;${2}
 # little argument handler by Noxbru
 snippet argh
 	void *arghandler(int argc, const char *argv[])
 	{
 		int i;
-		void **a;
-		a=malloc(${1:num_of_arguments}*sizeof(void *));
-		a[0]=malloc(sizeof(${2:double}));       *($2 *)a[0]=${3:default_value};
+		args a;
+		${1:initialize default values of a}
 		for(i = 1; i < argc; i++)
 		{
 			if(!strcmp(argv[i],"-h"))
-				${4:usage(argv[0]);}
-			else if(!strcmp(argv[i],"${5}"))
+				${2:usage(argv[0]);}
+			else if(!strcmp(argv[i],"${3}"))
 			{
-				${6:/* code */}
+				${4:/* code */}
 			}
-			else $4
+			else $2
 		}
 		return a;
 	}
