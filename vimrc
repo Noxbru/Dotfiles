@@ -10,6 +10,8 @@ colorscheme solarized
 "hi cCustomFunc  ctermfg=2 cterm=bold
 "set background=dark
 "colorscheme molokai
+"colorscheme wombat
+"colorscheme wargrey
 
 "----------- basic ----------------------
 set mouse=a " for using the mouse
@@ -19,13 +21,13 @@ set nobackup " don't keep backup after close
 set autoread " read files when other programs change them
 " set nowrap " no line wrapping
 set showcmd " show the input of an *incomplete* command
-set foldnestmax=1
-set foldmethod=syntax " folding stuff
+"set foldnestmax=1
+"set foldmethod=syntax " folding stuff
 set lazyredraw
 
 "---------- wildmenu --------------------
 set wildmenu
-set wildmode=list:longest
+set wildmode=longest:full
 
 set wildignore+=.hg,.git,.svn                    " Version control
 set wildignore+=*.aux,*.out,*.toc                " LaTeX intermediate files
@@ -50,7 +52,7 @@ set hlsearch " hilight the items found by the search
 set ignorecase " ignores case of letters on searches
 set smartcase " Override the 'ignorecase' option if the search pattern contains upper case characters
 
-" search will center on the line it's found in
+" search will center on the line it's found in.
 " caution as it makes imposible to write n or N
 " as first letter using snippets
 map N Nzz 
