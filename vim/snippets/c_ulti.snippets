@@ -1,0 +1,240 @@
+###########################################################################
+#                            TextMate Snippets                            #
+###########################################################################
+
+priority -50
+
+# === Preprocessor snippets === >>>
+snippet def "#define ..."
+#define ${1}
+endsnippet
+
+snippet ifndef "#ifndef ... #define ... #endif"
+#ifndef ${1/([A-Za-z0-9_]+).*/$1/}
+#define ${1:SYMBOL} ${2:value}
+#endif
+endsnippet
+
+snippet ifdef "#ifdef ...  #endif"
+#ifdef ${1:FOO}
+${2:#define }
+#endif
+endsnippet
+
+snippet #if "#if #endif" b
+#if ${1:0}
+${VISUAL}${0}
+#endif
+endsnippet
+
+snippet inc "#include <> (Inc)"
+#include <${1:stdio}.h>
+endsnippet
+
+snippet Inc "#include local header (inc)"
+#include "${1:`!p snip.rv = snip.basename + '.h'`}"
+endsnippet
+
+snippet mark "#pragma mark (mark)"
+#if 0
+${1:#pragma mark -
+}#pragma mark $2
+#endif
+
+$0
+endsnippet
+
+snippet once
+#ifndef ${1:`!p snip.rv = snip.basename.upper() + '_H'`}
+#define $1
+#pragma once
+
+${2}
+
+#endif /* end of include guard: $1 */
+endsnippet
+
+# <<<
+
+snippet main "main() (main)"
+int main(int argc, char *argv[])
+{
+	${VISUAL}${0}
+	return 0;
+}
+endsnippet
+
+# === Loops === >>>
+# Do While
+snippet do "do...while loop (do)"
+do
+{
+	${VISUAL}${0}
+} while(${1:/* condition */});
+endsnippet
+
+# While
+snippet wh "while loop"
+while(${1:/* condition */})
+{
+	${VISUAL}${0}
+}
+endsnippet
+
+# For
+snippet for "for loop (for)"
+for(${2:i} = 0; $2 < ${1:count}; $2${3:++})
+{
+	${VISUAL}${0}
+}
+endsnippet
+
+# Custom For
+snippet forr "Custom for loop"
+for(${1:/* START */}; ${2:/* CONDITION */}; ${3:/* STEP */})
+{
+	${4:/* code */}
+}
+endsnippet
+
+# <<<
+
+# === Conditionals === >>>
+# If
+snippet if "if"
+if(${1:/* condition */})
+{
+	${2:/* code */}
+}
+endsnippet
+
+# Else
+snippet el "else"
+else
+{
+	${1}
+}
+endsnippet
+
+# Else if
+snippet elif "else if"
+else if(${1:/* condition */})
+{
+	${2:/* code */}
+}
+endsnippet
+
+snippet ife "if .. else"
+if (${1:/* condition */})
+{
+	${2}
+}
+else
+{
+	${3:/* else */}
+}
+endsnippet
+
+# <<<
+# === Switch and Case === >>>
+snippet sw "switch"
+switch(${1})
+{
+	case ${2}:
+		${3:/* code */}
+}
+endsnippet
+
+# Case
+snippet case "case"
+case ${1}:
+	${2:/* code */}
+endsnippet
+
+# <<<
+# === Enum and Structs === >>>
+# Enum
+snippet enum "Enumeration"
+enum ${1:name}
+{
+	${2}
+};
+endsnippet
+
+# Struct
+snippet st "struct"
+struct ${1:`!p snip.rv = (snip.basename or "name") + "_t"`}
+{
+	${2:/* data */}
+} ${3: /* optional variable list */};
+endsnippet
+# <<<
+# === Typedefs === >>>
+# Typedef
+snippet td "Typedef"
+typedef ${1:int} ${2:MyCustomType};
+endsnippet
+# Typedef struct
+snippet tds
+typedef struct ${2:_$1}
+{
+	${3:/* data */}
+} ${1:`!p snip.rv = (snip.basename or "name") + "_t"`};
+endsnippet
+# Typdef enum
+snippet tde
+typedef enum
+{
+	${1:/* data */}
+} ${2:foo};
+endsnippet
+# <<<
+
+# === Input output === >>>
+# I don't know what these two do, so leave them be for now
+snippet printf "printf .. (printf)"
+printf("${1:%s}\n"${1/([^%]|%%)*(%.)?.*/(?2:, :\);)/}$2${1/([^%]|%%)*(%.)?.*/(?2:\);)/}
+endsnippet
+snippet fprintf "fprintf ..."
+fprintf(${1:stderr}, "${2:%s}\n"${2/([^%]|%%)*(%.)?.*/(?2:, :\);)/}$3${2/([^%]|%%)*(%.)?.*/(?2:\);)/}
+endsnippet
+
+snippet pr "printf"
+printf("${1:%s}\n"${2});${3}
+endsnippet
+# fprintf (again, this isn't as nice as TextMate's version, but it works)
+snippet fpr "fprintf"
+fprintf(${1:stderr},"${2:%s}\n"${3});${4}
+endsnippet
+# sprintf made by Noxbru
+snippet spr "sprintf"
+sprintf(${1},"${2:%s}\n"${3});${4}
+endsnippet
+# scanf made by Noxbru
+snippet sf "scanf"
+scanf("${1:%s}\n",&${2});${3}
+endsnippet
+# fscanf made by Noxbru
+snippet fsf "fscanf"
+fscanf(${1},"${2:%s}\n",&${3});${4}
+endsnippet
+# sscanf made by Noxbru
+snippet ssf "sscanf"
+sscanf(${1},"${2:%s}\n",&${3});${4}
+endsnippet
+# <<<
+
+# === Functions === >>>
+snippet fun "function" b
+${1:void} ${2:function_name}(${3})
+{
+	${VISUAL}${0}
+}
+endsnippet
+
+snippet fund "function declaration" b
+${1:void} ${2:function_name}(${3});
+endsnippet
+# <<<
+
+# vim:ft=snippets:

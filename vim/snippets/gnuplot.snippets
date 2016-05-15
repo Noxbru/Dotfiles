@@ -1,0 +1,46 @@
+# snippets for different outputs
+snippet term
+	set terminal ${1}
+snippet svg
+	set terminal svg size ${1:width},${2:height} font ${3:Cantarell}${4}
+snippet png
+	set terminal png size ${1:width},${2:height} font ${3:Cantarell}${4}
+snippet eps
+	set terminal postscript eps color enhanced solid "${1:Bitstream\ Charter}" 12${2}
+snippet pdf
+	set terminal pdfcairo color enhanced solid font "${1:bitstream,20}" size ${2:20,6.5}
+# Snippets for titles, ranges and labels
+snippet tit
+	set title "${1}"${2}
+snippet xl
+	set xlabel "${1}"${2}
+snippet yl
+	set ylabel "${1}"${2}
+snippet zl
+	set zlabel "${1}"${2}
+snippet xr
+	set xrange [${1}:${2}]${3}
+snippet yr
+	set yrange [${1}:${2}]${3}
+snippet zr
+	set zrange [${1}:${2}]${3}
+#
+
+# Snippet for setting and unsetting the output
+snippet out 
+	set output "${1:filename}"
+
+	${2:#plots}
+
+	unset output
+#
+
+# Snippets for useful functions for fitting
+# maybe you will have to rewrite to change the params
+# Normal function
+snippet gauss
+	gauss(x) = a*exp(-((x-b)/c)**2)
+snippet lorentz
+	lorentz(x) = a/((x-b)**2+c*c)
+snippet norm
+	norm(x,y) = sqrt(x*x+y*y)
