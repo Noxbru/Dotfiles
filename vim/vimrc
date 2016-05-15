@@ -1,80 +1,249 @@
+" === Basic Configuration === >>>
 set nocompatible " use Vim settings
 
-syntax on
+syntax on               " Syntax highlighting, please
+filetype plugin on      " Plugins for files, please
+let g:pathogen_disabled = ['matchit']
+call pathogen#infect()  " Pathogen on!
 
-"----------- colors and colorscheme -----
-set t_Co=256 " use the terminal with 256 colors
-let g:solarized_style="dark"
-colorscheme solarized
-"colorscheme zellner
-"hi cCustomFunc  ctermfg=2 cterm=bold
-"set background=dark
-"colorscheme molokai
-"colorscheme wombat
-"colorscheme wargrey
 
-"----------- basic ----------------------
-set mouse=a " for using the mouse
-set ruler " displays the 'ruler at the bottom right of the screen
-set number " precede each line with its line number
-set nobackup " don't keep backup after close
-set autoread " read files when other programs change them
-" set nowrap " no line wrapping
-set showcmd " show the input of an *incomplete* command
-"set foldnestmax=1
-"set foldmethod=syntax " folding stuff
-set lazyredraw
+" === Basic === >>>
+set encoding=utf-8  " utf-8 encoding, please
+set mouse=a         " for using the mouse
+set ruler           " displays the 'ruler' at the bottom right of the screen
+set number          " precede each line with its line number
+set nobackup        " don't keep backup after close
+set autoread        " read files when other programs change them
+set nowrap          " no line wrapping
+set showcmd         " show the input of an *incomplete* command
+"set lazyredraw
+let mapleader=" "
 
-"---------- wildmenu --------------------
+set listchars=eol:¬,tab:\|→,extends:>,precedes:<,trail:·,nbsp:␣
+
+
+" <<<
+" === Colors === >>>
+set t_Co=256                            " use the terminal with 256 colors
+set background=dark
+colorscheme badwolf
+highlight SpecialKey ctermbg=yellow
+"highlight NonText ctermbg=yellow
+highlight Comment ctermfg=0 ctermbg=239
+
+"let g:solarized_style="dark"
+"let g:solarized_termcolors=256
+"colorscheme solarized
+
+" <<<
+" === Wildmenu === >>>
 set wildmenu
-set wildmode=longest:full
+set wildmode=longest:full,full
 
-set wildignore+=.hg,.git,.svn                    " Version control
-set wildignore+=*.aux,*.out,*.toc                " LaTeX intermediate files
-set wildignore+=*.jpg,*.bmp,*.gif,*.png,*.jpeg   " binary images
-set wildignore+=*.luac                           " Lua byte code
-set wildignore+=*.o,*.obj,*.exe,*.dll,*.manifest " compiled object files
-set wildignore+=*.pyc                            " Python byte code
-set wildignore+=*.spl                            " compiled spelling word lists
-set wildignore+=*.sw?                            " Vim swap files
-set wildignore+=*.DS_Store?                      " OSX bullshit
+set wildignore+=.hg,.git,.svn                           " Version control
+set wildignore+=*.aux,*.out,*.toc                       " LaTeX intermediate files
+set wildignore+=*.jpg,*.bmp,*.gif,*.png,*.jpeg          " binary images
+set wildignore+=*.luac                                  " Lua byte code
+set wildignore+=*.o,*.lo,*.obj,*.exe,*.dll,*.manifest   " compiled object files
+set wildignore+=*.pyc                                   " Python byte code
+set wildignore+=*.spl                                   " compiled spelling word lists
+set wildignore+=*.sw?                                   " Vim swap files
+set wildignore+=*.DS_Store?                             " OSX bullshit
 
-"----------- status line ----------------
-set laststatus=2
+set wildignore+=*.flv                                   " Working with Udacity lessons
+" <<<
+" === Status line === >>>
+set laststatus=2    " Always show the Status Line
 
-set statusline=%F%m%r%h%w
-set statusline+=%=(%{&ff}/%Y)
-set statusline+=\ (line\ %l\/%L,\ col\ %c) 
+"set statusline=%F%m%r%h%w      " Full path to file + modified flag + read only flag + help buffer flag + preview flag
+"set statusline+=%=(%{&ff}/%Y)  " File Format + File Type
+"set statusline+=\ (line\ %l\/%L,\ col\ %c,\ char\ %3b,\ 0x%2B) " Line, col, char
 
-"----------- search ---------------------
-set incsearch " show 'best match so far' as you type
-set hlsearch " hilight the items found by the search
-set ignorecase " ignores case of letters on searches
-set smartcase " Override the 'ignorecase' option if the search pattern contains upper case characters
+" <<<
+" === Search === >>>
+set incsearch   " show 'best match so far' as you type
+set hlsearch    " hilight the items found by the search
+set ignorecase  " ignores case of letters on searches
+set smartcase   " Override the 'ignorecase' option if the search pattern contains upper case characters
 
-" search will center on the line it's found in.
-" caution as it makes imposible to write n or N
-" as first letter using snippets
-map N Nzz 
-map n nzz
+" <<<
+" === Mappings === >>>
+" Search will center on the line it's found in.
+nmap N Nzz
+nmap n nzz
 
-"----------- indentation ----------------
+" Make j and k behave as the intuition says
+" when navigating through wrapped text
+nmap j gj
+nmap k gk
+
+" Toggles the list and wrapping
+map <silent> <F3> :set list!<CR>
+map <silent> <F4> :set wrap!<CR>
+
+" <<<
+" === Indentation === >>>
 set autoindent
 set smartindent
-set expandtab
-set smarttab
+set pastetoggle=<F2>    " Paste indented text with F2
+filetype indent on
 
+set cino =:0    " align 'case' with 'switch'
+set cino+=g0    " align 'public', 'protected' and 'private' with 'class'
+set cino+=N-s   " align namespace things with 'namespace'
+
+" <<<
+" === Tabs === >>>
 set shiftwidth=4
 set tabstop=4
 set softtabstop=4
 set shiftround
+set expandtab
+set smarttab
 
-"----------- scroll ---------------------
-set scrolloff=3 " scroll when cursor gets within 3 characters of top/bottom edge
-set sidescrolloff=5 " scroll when cursor gets within 5 characters of left/right edge
+" <<<
+" === Scroll === >>>
+set scrolloff=3         " scroll when cursor gets within 3 characters of top/bottom edge
+set sidescrolloff=5     " scroll when cursor gets within 5 characters of left/right edge
+set colorcolumn=80      " highlight the 80 column
 
-"---Para hacer funcionar los snippets----
-filetype plugin on
+" <<<
+" === Comments === >>>
+set formatoptions+=o
+set formatoptions+=r
 
-"---Chorraditas para Tagbar--------------
+" <<<
+" === Folding Stuff === >>>
+" Everything handled by the FastFold plugin
+
+set foldmarker=>>>,<<<
+" <<<
+" === Extra Stuff === >>>
+" Go to the last known cursor position in a file
+autocmd BufReadPost *
+    \ if !(bufname("%") =~ '\(COMMIT_EDITMSG\)') &&
+    \   line("'\"") > 1 && line("'\"") < line("$") |
+    \   exe "normal! g`\"" |
+    \ endif
+
+" Concealing stuff
+set conceallevel=2
+set concealcursor=inc
+
+autocmd Syntax * syntax match IndentLineSpace /^\s\+/ containedin=ALL contains=IndentLine
+autocmd Syntax * syntax match IndentLine / \{3}\zs / contained conceal cchar=¦
+"autocmd Syntax * syntax match IndentLine /\t\zs / contained conceal cchar=¦
+
+highlight Conceal ctermfg=249 ctermbg=NONE
+highlight IndentLine ctermfg=249 ctermbg=NONE
+" <<<
+" === Basic Configuration === <<<
+" === Plugin Configuration === >>>
+" === Airline === >>>
+"let g:airline_theme='badwolf'
+let g:airline_section_c = airline#section#create(['file', '%r%h%w'])
+
+" default sections for reference
+" let g:airline_section_a = airline#section#create_left(['mode', 'paste', 'capslock', 'iminsert'])
+" let g:airline_section_b = airline#section#create(['hunks', 'branch'])
+" let g:airline_section_c = airline#section#create(['%<', 'file', spc, 'readonly'])
+" let g:airline_section_gutter = airline#section#create(['%='])
+" let g:airline_section_x = airline#section#create_right(['tagbar', 'filetype'])
+" let g:airline_section_y = airline#section#create_right(['ffenc'])
+" let g:airline_section_z = airline#section#create(['windowswap', '%3p%%'.spc, 'linenr', ':%3c '])
+" let g:airline_section_warning = airline#section#create(['syntastic', 'eclim', 'whitespace'])
+
+" Powerline patched font for inconsolata is different from the one installed
+" in my system, so disable them for now, instead, fill it with some unicode
+" characters
+"let g:airline_powerline_fonts = 1
+if !exists('g:airline_symbols')
+  let g:airline_symbols = {}
+endif
+
+let g:airline_left_sep = '▶'
+let g:airline_right_sep = '◀'
+let g:airline_symbols.linenr = '␤'
+let g:airline_symbols.branch = '⎇'
+let g:airline_symbols.paste = '∥'
+let g:airline_symbols.whitespace = 'Ξ'
+
+" <<<
+" === FastFold === >>>
+
+" <<<
+" === NERDTree === >>>
+map <F8> :NERDTreeToggle<CR> " mapeamos F8 para que arranque NERDTree
+let NERDTreeWinPos = "right"
+let NERDTreeIgnore = ['\.pyc$']
+let NERDTreeIgnore += ['\.o$']
+let NERDTreeIgnore += ['\.lo$']
+let NERDTreeIgnore += ['\.la$']
+let NERDTreeIgnore += ['\.flv$']
+
+" quits vim if NERDTree is the last buffer
+" extracted from here: https://github.com/scrooloose/nerdtree/issues/21
+" doesn't work if you have both NERDTree
+" and Tagbar
+autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+
+" <<<
+" === SnipMate === >>>
+" Add more snippets to some files
+"if !exists('g:snipMate')
+    "let g:snipMate = {}
+"endif
+"let g:snipMate.scope_aliases = get(g:snipMate, 'scope_aliases', {})
+"if !exists('g:snipMate_no_default_aliases') || !g:snipMate_no_default_aliases
+" If we are editing an Opencl file also use C snippets
+    "let g:snipMate.scope_aliases.opencl = get(g:snipMate.scope_aliases, 'opencl', 'c')
+"endif
+
+
+" <<<
+" === Syntastic === >>>
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 0
+let g:syntastic_loc_list_height = 3
+"let g:syntastic_cpp_check_header = 1
+let g:syntastic_c_compiler = 'clang'
+let g:syntastic_cpp_compiler = 'clang++'
+"let g:syntastic_c_compiler = 'gcc'
+"let g:syntastic_cpp_compiler = 'g++'
+let g:syntastic_cpp_compiler_options = '-std=c++11'
+
+" <<<
+" === Tagbar === >>>
 map <F7> :TagbarToggle<CR> " mapeamos F7 para que arranque Tagbar
+let g:tagbar_left = 1
+let g:tagbar_width = 30
+
+" <<<
+" === TagHighLight === >>>
+map <F6> :UpdateTypesFile<CR> " mapeamos F6 para que recargue las tags
+
+hi link CTagsDefinedName        Define  " Defines are green
+hi link CTagsEnumerationValue   Define  " Values of enumerations are also green
+
+hi link CTagsEnumeratorName     type    " The name of the enumeration is like a type
+hi link CTagsStructure          type    " Structures are types
+hi link CTagsUnion              type    " Unions are types
+
+" <<<
+" === UltiSnips === >>>
+let g:UltiSnipsJumpForwardTrigger='<Tab>'
+" <<<
+" === YouCompleteMe === >>>
+let g:ycm_global_ycm_extra_conf = "~/.vim/.ycm_extra_conf.py"
+let g:ycm_show_diagnostics_ui = 0
+"let g:ycm_key_list_select_completion = ['<ENTER>', '<Down>']
+let g:ycm_key_list_select_completion = ['<Down>'] " <ENTER> will select a completion, even if you really want a carriage return
+
+set completeopt-=preview
+let g:ycm_add_preview_to_completeopt = 0
+let g:ycm_min_num_of_chars_for_completion = 99 " Disable identifier completer (avoid suggestions of variables out of scope)
+
+" <<<
+" === Plugin Configuration === <<<
