@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+
+if [[ `pidof redshift` ]]; then
+    kill -INT `pidof redshift`
+else
+    #redshift -l 41.65:-0.88 -g 0.7 &
+    redshift -l 28.48:-16.31 -g 0.7 &
+fi
