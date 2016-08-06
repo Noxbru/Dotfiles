@@ -1,0 +1,6 @@
+set loadpath "~/.config/gnuplot/:/home/noxbru/.config/gnuplot/palettes"
+
+load "dark.cfg"
+
+# please, if I load a palette, use it
+set style increment user
