@@ -188,6 +188,18 @@ let NERDTreeIgnore += ['\.flv$']
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 
 " <<<
+" === Notebook === >>>
+function! NotebookStartPariGP()
+    let g:notebook_cmd='gp -q'
+    let g:notebook_stop='quit()'
+    let g:notebook_send='print(\"VIMPARIGPNOTEBOOK\");'
+    let g:notebook_detect='VIMPARIGPNOTEBOOK'
+    let g:notebook_send0=''
+    let g:notebook_sendinit='default(\"readline\",0); default(\"colors\",\"no\");'
+    NotebookStart
+endfunc
+command! NotebookStartPariGP :call NotebookStartPariGP()
+" <<<
 " === SnipMate === >>>
 " Add more snippets to some files
 "if !exists('g:snipMate')

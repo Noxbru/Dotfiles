@@ -27,6 +27,8 @@ get_bundle kien rainbow_parentheses.vim
 
 get_bundle Konfekt FastFold
 
+get_bundle baruchel vim-notebook
+
 # SirVer Snippets
 get_bundle SirVer ultisnips
 get_bundle honza vim-snippets
