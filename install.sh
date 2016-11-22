@@ -24,7 +24,7 @@ usage() {
 bash() {
     echo " + Installing bashrc"
     echo "      cp ./bash/bashrc ~/.bashrc"
-    #cp ./bash/bashrc ~/.bashrc
+    cp ./bash/bashrc ~/.bashrc
 }
 
 gnuplot() {
@@ -33,18 +33,18 @@ gnuplot() {
     echo "      mkdir -p ~/.config/gnuplot/palettes"
     echo "      cp ./gnuplot/gnuplot ~/.gnuplot"
     echo "      cp ./gnuplot/dark.cfg ~/.config/gnuplot/"
-    #mkdir -p ~/.config/gnuplot
-    #mkdir -p ~/.config/gnuplot/palettes
-    #cp ./gnuplot/gnuplot ~/.gnuplot
-    #cp ./gnuplot/dark.cfg ~/.config/gnuplot
+    mkdir -p ~/.config/gnuplot
+    mkdir -p ~/.config/gnuplot/palettes
+    cp ./gnuplot/gnuplot ~/.gnuplot
+    cp ./gnuplot/dark.cfg ~/.config/gnuplot
 }
 
 mpd() {
     echo " + Installing mpd configuration"
     echo "      mkdir -p ~/.config/mpd"
     echo "      cp ./mpd/mpd.conf ~/.config/mpd/"
-    #mkdir -p ~/.config/mpd
-    #cp ./mpd/mpd.conf ~/.config/mpd/
+    mkdir -p ~/.config/mpd
+    cp ./mpd/mpd.conf ~/.config/mpd/
 }
 
 ncmpcpp() {
@@ -52,9 +52,9 @@ ncmpcpp() {
     echo "      mkdir -p ~/.ncmpcpp"
     echo "      cp ./ncmpcpp/bindings ~/.ncmpcpp/"
     echo "      cp ./ncmpcpp/config ~/.ncmpcpp/"
-    #mkdir -p ~/.ncmpcpp
-    #cp ./ncmpcpp/bindings ~/.ncmpcpp/
-    #cp ./ncmpcpp/config ~/.ncmpcpp/
+    mkdir -p ~/.ncmpcpp
+    cp ./ncmpcpp/bindings ~/.ncmpcpp/
+    cp ./ncmpcpp/config ~/.ncmpcpp/
 }
 
 vim() {
@@ -64,11 +64,11 @@ vim() {
     echo "      mv ~/.vim/vimrc ~/.vimrc"
     echo "      mv ~/.vim/ycm_extra_conf.py ~/.vim/.ycm_extra_conf.py"
     echo "      sh ~/.vim/vim_bundle.sh"
-    #mkdir -p ~/.vim
-    #cp -r ./vim/* ~/.vim/
-    #mv ~/.vim/vimrc ~/.vimrc
-    #mv ~/.vim/ycm_extra_conf.py ~/.vim/.ycm_extra_conf.py
-    #sh ~/.vim/vim_bundle.sh
+    mkdir -p ~/.vim
+    cp -r ./vim/* ~/.vim/
+    mv ~/.vim/vimrc ~/.vimrc
+    mv ~/.vim/ycm_extra_conf.py ~/.vim/.ycm_extra_conf.py
+    sh ~/.vim/vim_bundle.sh
 }
 
 zsh() {
@@ -80,13 +80,13 @@ zsh() {
     echo "      cp ./zsh/muse.zsh-theme ~/.oh-my-zsh/themes/"
     echo "      cp ./zsh/key-bindings.zsh ~/.oh-my-zsh/lib/"
     echo "      cp ./zsh/history.zsh ~/.oh-my-zsh/lib/"
-    #if [ ! -d ~/.oh-my-zsh]
-        #sh -c "$(wget https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh -O -)"
-    #fi
-    #cp ./zsh/zshrc ~/.zshrc
-    #cp ./zsh/muse.zsh-theme ~/.oh-my-zsh/themes/
-    #cp ./zsh/key-bindings.zsh ~/.oh-my-zsh/lib/
-    #cp ./zsh/history.zsh ~/.oh-my-zsh/lib/
+    if [[ ! -d ~/.oh-my-zsh ]]; then
+        sh -c "$(wget https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh -O -)"
+    fi
+    cp ./zsh/zshrc ~/.zshrc
+    cp ./zsh/muse.zsh-theme ~/.oh-my-zsh/themes/
+    cp ./zsh/key-bindings.zsh ~/.oh-my-zsh/lib/
+    cp ./zsh/history.zsh ~/.oh-my-zsh/lib/
 }
 
 case "$1" in
