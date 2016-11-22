@@ -42,8 +42,10 @@ gnuplot() {
 mpd() {
     echo " + Installing mpd configuration"
     echo "      mkdir -p ~/.config/mpd"
+    echo "      mkdir -p ~/.config/mpd/playlists"
     echo "      cp ./mpd/mpd.conf ~/.config/mpd/"
     mkdir -p ~/.config/mpd
+    mkdir -p ~/.config/mpd/playlists
     cp ./mpd/mpd.conf ~/.config/mpd/
 }
 
