@@ -23,7 +23,7 @@ get_bundle godlygeek tabular
 
 get_bundle majutsushi tagbar
 
-get_bundle kien rainbow_parentheses.vim
+get_bundle eapache rainbow_parentheses.vim
 
 get_bundle Konfekt FastFold
 
