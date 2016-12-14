@@ -166,7 +166,7 @@ def FlagsForFile(filename, **kwargs):
 
     else:
         relative_to = DirectoryOfThisScript()
-        temp_flags = common_flags
+        temp_flags = common_flags[:] # Stupid python
 
         if IsCFile(filename):
             temp_flags += c_flags
