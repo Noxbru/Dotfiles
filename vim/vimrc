@@ -81,6 +81,16 @@ nmap k gk
 map <silent> <F3> :set list!<CR>
 map <silent> <F4> :set wrap!<CR>
 
+" Not trully a mapping, but will avoid those stupid
+" :W command not found when I was looking for :w
+fun! SetupCommandAlias(from, to)
+  exec 'cnoreabbrev <expr> '.a:from
+        \ .' ((getcmdtype() is# ":" && getcmdline() is# "'.a:from.'")'
+        \ .'? ("'.a:to.'") : ("'.a:from.'"))'
+endfun
+call SetupCommandAlias("W","w")
+call SetupCommandAlias("Q","q")
+
 " <<<
 " === Indentation === >>>
 set autoindent
