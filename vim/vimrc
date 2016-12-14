@@ -259,6 +259,8 @@ let g:UltiSnipsJumpForwardTrigger='<Tab>'
 " <<<
 " === YouCompleteMe === >>>
 let g:ycm_global_ycm_extra_conf = "~/.vim/.ycm_extra_conf.py"
+let g:ycm_extra_conf_vim_data   = ['&filetype']
+
 let g:ycm_show_diagnostics_ui = 0
 "let g:ycm_key_list_select_completion = ['<ENTER>', '<Down>']
 let g:ycm_key_list_select_completion = ['<Down>'] " <ENTER> will select a completion, even if you really want a carriage return

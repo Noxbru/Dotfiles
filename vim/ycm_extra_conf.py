@@ -30,14 +30,27 @@
 
 import os
 import ycm_core
+import subprocess
+import re
 
-common_flags = ['-Wall', '-Wextra',
-                '-I' '.']
-c_flags = ['-std=c99', '-x', 'c',
-        '-isystem', '/usr/include/']
-cpp_flags = ['-std=c++11', '-x', 'c++',
-        '-isystem', '/usr/include/',
-        '-isystem', '/usr/include/c++/6.2.1/']
+common_flags = ['-Wall', '-Wextra']
+c_flags = ['-std=c99', '-x', 'c']
+cpp_flags = ['-std=c++11', '-x', 'c++']
+
+def LoadSystemIncludes(filetype):
+    regex = re.compile(ur'(?:\#include \<...\> search starts here\:)(?P<list>.*?)(?:End of search list)', re.DOTALL)
+    process = subprocess.Popen(['clang', '-v', '-E', '-x', filetype, '-'], \
+            stdin=subprocess.PIPE, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+    process_out, process_err = process.communicate('')
+    output = process_out + process_err
+    includes = []
+    for p in re.search(regex, output).group('list').split('\n'):
+        p = p.strip()
+        if len(p) > 0 and p.find('(framework directory)') < 0:
+            includes.append('-isystem')
+            includes.append(p)
+
+    return includes
 
 SOURCE_EXTENSIONS = ['.cpp', '.cxx', '.cc', '.c', '.m', '.mm']
 
@@ -88,6 +101,8 @@ def MakeRelativePathsInFlagsAbsolute(flags, working_directory):
             make_next_absolute = False
             if not flag.startswith('/'):
                 new_flag = os.path.join(working_directory, flag)
+            else:
+                new_flag = os.path.abspath(flag)
 
         for path_flag in path_flags:
             if flag == path_flag:
@@ -140,13 +155,23 @@ def FlagsForFile(filename, **kwargs):
             compilation_info.compiler_working_dir_)
 
     else:
+        file_path = os.path.dirname(os.path.abspath(filename))
         relative_to = DirectoryOfThisScript()
+
+        data = kwargs['client_data']
+        filetype = data['&filetype']
+
         temp_flags = common_flags[:] # Stupid python
 
-        if IsCFile(filename):
+        if filetype == 'c':
             temp_flags += c_flags
-        elif IsCppFile(filename):
+            lang = 'c'
+        elif filetype == 'cpp':
             temp_flags += cpp_flags
+            lang = 'c++'
+
+        temp_flags += ['-I', file_path]
+        temp_flags += LoadSystemIncludes(lang)
 
         final_flags = MakeRelativePathsInFlagsAbsolute(temp_flags, relative_to)
 
