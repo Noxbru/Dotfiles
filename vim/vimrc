@@ -10,6 +10,7 @@ call pathogen#infect()  " Pathogen on!
 " === Basic === >>>
 set encoding=utf-8  " utf-8 encoding, please
 set mouse=a         " for using the mouse
+set ttymouse=xterm2 " Allow resizing of splits within tmux
 set ruler           " displays the 'ruler' at the bottom right of the screen
 set number          " precede each line with its line number
 set nobackup        " don't keep backup after close
