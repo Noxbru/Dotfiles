@@ -113,6 +113,8 @@ case "$1" in
         gnuplot
         mpd
         ncmpcpp
+        termite
+        tmux
         vim
         zsh
         ;;
@@ -121,6 +123,8 @@ case "$1" in
     "gnuplot")  gnuplot  ;;
     "mpd")      mpd      ;;
     "ncmpcpp")  ncmpcpp  ;;
+    "termite")  termite  ;;
+    "tmux")     tmux     ;;
     "vim")      vim      ;;
     "zsh")      zsh      ;;
     *)          usage    ;;
