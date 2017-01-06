@@ -29,6 +29,9 @@ au! BufRead *vimrc setlocal foldmethod=marker
 " i3 configuration files
 au! BufRead *i3/config set filetype=i3 foldmethod=marker
 
+" tmux configuration
+autocmd BufNewFile,BufRead {.,}tmux.conf set ft=tmux
+
 au! BufRead,BufNewFile *.h setfiletype c
 
 augroup END
