@@ -17,6 +17,7 @@ usage() {
     echo "  - gnuplot: Install some gnuplot configuration"
     echo "  - mpd: Install some mpd configuration"
     echo "  - ncmpcpp: Install some ncmpcpp configuration"
+    echo "  - termite: Install some termite configuration"
     echo "  - tmux: Install some tmux configuration"
     echo "  - vim: vimrc and all my .vim. Also runs vim_bundle.sh"
     echo "  - zsh: Installs oh-my-zsh and adds my modifications on top"
@@ -58,6 +59,14 @@ ncmpcpp() {
     mkdir -p ~/.ncmpcpp
     cp ./ncmpcpp/bindings ~/.ncmpcpp/
     cp ./ncmpcpp/config ~/.ncmpcpp/
+}
+
+termite() {
+    echo " + Installing termite configuration"
+    echo "      mkdir -p ~/.config/termite"
+    echo "      cp ./termite/config ~/.config/termite/"
+    mkdir -p ~/.config/termite
+    cp ./termite/config ~/.config/termite/
 }
 
 tmux() {
