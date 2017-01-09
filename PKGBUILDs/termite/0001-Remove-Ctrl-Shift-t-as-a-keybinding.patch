@@ -1,0 +1,26 @@
+From 66f1bb9b270a56c040623cfe3ffbb285c969ba59 Mon Sep 17 00:00:00 2001
+From: =?UTF-8?q?Bruno=20Jim=C3=A9nez?= <brunojimen@gmail.com>
+Date: Sat, 17 Dec 2016 12:53:41 +0000
+Subject: [PATCH] Remove Ctrl+Shift+t as a keybinding
+
+---
+ termite.cc | 3 ---
+ 1 file changed, 3 deletions(-)
+
+diff --git a/termite.cc b/termite.cc
+index e7e55ac..8a58204 100644
+--- a/termite.cc
++++ b/termite.cc
+@@ -916,9 +916,6 @@ gboolean key_press_cb(VteTerminal *vte, GdkEventKey *event, keybind_info *info)
+     }
+     if (modifiers == (GDK_CONTROL_MASK|GDK_SHIFT_MASK)) {
+         switch (gdk_keyval_to_lower(event->keyval)) {
+-            case GDK_KEY_t:
+-                launch_in_directory(vte);
+-                return TRUE;
+             case GDK_KEY_space:
+             case GDK_KEY_nobreakspace: // shift-space on some keyboard layouts
+                 enter_command_mode(vte, &info->select);
+-- 
+2.11.0
+
