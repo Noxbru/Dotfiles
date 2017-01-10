@@ -47,6 +47,10 @@ source $ZSH/oh-my-zsh.sh
 
 # Customize to your needs...
 
+# Maybe I should switch this to a switch in $TERM and then do things inside?
+# If not running interactively, do not do anything
+[[ $- != *i* ]] && return
+[[ -z "$TMUX" && $TERM = *termite ]] && exec tmux
 alias kvm="qemu-system-x86_64 -enable-kvm -cpu host"
 
 export EDITOR=vim
