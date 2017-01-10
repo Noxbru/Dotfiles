@@ -51,6 +51,12 @@ source $ZSH/oh-my-zsh.sh
 # If not running interactively, do not do anything
 [[ $- != *i* ]] && return
 [[ -z "$TMUX" && $TERM = *termite ]] && exec tmux
+
+# If we have .cargo it means that we are working with rust
+# As I won't add anything to .profile we have to source the env
+# variables ourselves
+[[ -d ~/.cargo ]] && source ~/.cargo/env
+
 alias kvm="qemu-system-x86_64 -enable-kvm -cpu host"
 alias wine="FREETYPE_PROPERTIES=\"truetype:interpreter-version=35\" wine"
 
