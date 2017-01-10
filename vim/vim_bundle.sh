@@ -66,6 +66,7 @@ get_bundle bling vim-airline
 get_bundle tikhomirov vim-glsl
 
 get_bundle octol vim-cpp-enhanced-highlight
+get_bundle rust-lang rust.vim
 
 # XXX
 #get_bundle jeaye color_coded
