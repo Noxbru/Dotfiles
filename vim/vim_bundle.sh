@@ -1,37 +1,100 @@
 mkdir -p ~/.vim/bundle/
 cd ~/.vim/bundle/
 
-get_bundle() {
-    (
-     if [ -d "$2" ]; then
-        echo "Updating $1's $2"
-        cd "$2"
-        git pull --rebase
-     else
-        git clone "https://github.com/$1/$2.git"
-     fi
-    )
+BGreen='\033[1;32m'
+BRed='\033[1;31m'
+BCyan='\033[1;36m'
+NC='\033[0m'
+
+update_repo() {
+(
+    n=$1[@]
+    pair=("${!n}")
+
+    user=${pair[0]}
+    repo=${pair[1]}
+
+    if [[ "$user" = "" || "$repo" = "" ]]; then
+        echo -e "${BRed}Error${NC}: empty user or repo in: ${BRed}$1${NC}"
+        return
+    fi
+
+    if [ -d "$repo" ]; then
+        echo -n "Updating $user's $repo: "
+        cd "$repo"
+
+        # git errors seems to go to stderr so we need to redirect stderr
+        # to stdout to capture them
+        out=`git pull --rebase 2>&1`
+        if [ "$out" = "Already up-to-date." ]; then
+            echo -e "${BGreen}$out${NC}"
+        elif [[ "$out" = error* ]]; then
+            echo -e "${BRed}Error!${NC}"
+        elif [ "$out" = "remote*" ]; then
+            echo -e "${BCyan}Updated!${NC}"
+        else
+            echo "$out"
+        fi
+    else
+        echo "Creating $user's $repo"
+        out=`git clone "https://github.com/$user/$repo.git"`
+        echo "$out"
+    fi
+)
 }
 
-get_bundle scrooloose nerdtree
-get_bundle scrooloose nerdcommenter
-get_bundle scrooloose syntastic
+nerdtree=(scrooloose nerdtree)
+nerdcommenter=(scrooloose nerdcommenter)
+syntastic=(scrooloose syntastic)
 
-get_bundle JuliaLang julia-vim
+julia=(JuliaLang julia-vim)
 
-get_bundle godlygeek tabular
+tabular=(godlygeek tabular)
 
-get_bundle majutsushi tagbar
+tagbar=(majutsushi tagbar)
 
-get_bundle eapache rainbow_parentheses.vim
+rainbow_parentheses=(eapache rainbow_parentheses.vim)
 
-get_bundle Konfekt FastFold
+fast_fold=(Konfekt FastFold)
 
-get_bundle baruchel vim-notebook
+vim_notebook=(baruchel vim-notebook)
+
+ultisnips=(SirVer ultisnips)
+vim_snippets=(honza vim-snippets)
+
+pathogen=(tpope vim-pathogen)
+
+vim_airline=(bling vim-airline)
+
+vim_glsl=(tikhomirov vim-glsl)
+
+vim_cpp_enhanced_highlight=(octol vim-cpp-enhanced-highlight)
+
+vim_rust=(rust-lang rust.vim)
+vim_racer=(racer-rust vim-racer)
+
+vim_actionscript=(jeroenbourgois vim-actionscript)
+
+update_repo nerdtree
+update_repo nerdcommenter
+update_repo syntastic
+
+update_repo julia
+
+update_repo tabular
+
+update_repo tagbar
+
+update_repo rainbow_parentheses
+
+update_repo fast_fold
+
+update_repo vim_notebook
+
 
 # SirVer Snippets
-get_bundle SirVer ultisnips
-get_bundle honza vim-snippets
+update_repo ultisnips
+update_repo vim_snippets
 
 
 # Install dependencies: for vim-snipmate
@@ -42,7 +105,7 @@ get_bundle honza vim-snippets
 # Install SnipMate Snippets
 #get_bundle garbas vim-snipmate
 
-get_bundle tpope vim-pathogen
+update_repo pathogen
 #get_bundle tpope vim-abolish
 #get_bundle tpope vim-bundler
 #get_bundle tpope vim-commentary
@@ -61,12 +124,15 @@ get_bundle tpope vim-pathogen
 #get_bundle tpope vim-surround
 #get_bundle tpope vim-unimpaired
 
-get_bundle bling vim-airline
+update_repo vim_airline
 
-get_bundle tikhomirov vim-glsl
+update_repo vim_glsl
 
-get_bundle octol vim-cpp-enhanced-highlight
-get_bundle rust-lang rust.vim
+update_repo vim_cpp_enhanced_highlight
+
+update_repo vim_rust
+update_repo vim_racer
+
 
 # XXX
 #get_bundle jeaye color_coded
@@ -88,4 +154,4 @@ get_bundle rust-lang rust.vim
 
 #get_bundle altercation vim-colors-solarized
 
-get_bundle jeroenbourgois vim-actionscript
+update_repo vim_actionscript
