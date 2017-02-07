@@ -35,10 +35,12 @@ gnuplot() {
     echo "      mkdir -p ~/.config/gnuplot/palettes"
     echo "      cp ./gnuplot/gnuplot ~/.gnuplot"
     echo "      cp ./gnuplot/dark.cfg ~/.config/gnuplot/"
+    echo "      git clone https://github.com/Noxbru/gnuplot-palettes.git ~/.config/gnuplot/palettes/"
     mkdir -p ~/.config/gnuplot
     mkdir -p ~/.config/gnuplot/palettes
     cp ./gnuplot/gnuplot ~/.gnuplot
     cp ./gnuplot/dark.cfg ~/.config/gnuplot
+    git clone https://github.com/Noxbru/gnuplot-palettes.git ~/.config/gnuplot/palettes/
 }
 
 mpd() {
