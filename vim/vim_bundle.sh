@@ -30,7 +30,7 @@ update_repo() {
             echo -e "${BGreen}$out${NC}"
         elif [[ "$out" = error* ]]; then
             echo -e "${BRed}Error!${NC}"
-        elif [ "$out" = "remote*" ]; then
+        elif [ "$out" = "From*" ]; then
             echo -e "${BCyan}Updated!${NC}"
         else
             echo "$out"
