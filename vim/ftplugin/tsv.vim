@@ -1,0 +1,1 @@
+exec '%!column -t' | w

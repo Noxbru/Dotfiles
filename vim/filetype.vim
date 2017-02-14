@@ -34,4 +34,6 @@ autocmd BufNewFile,BufRead {.,}tmux.conf set ft=tmux
 
 au! BufRead,BufNewFile *.h setfiletype c
 
+au! BufRead *.tsv setfiletype tsv
+
 augroup END
