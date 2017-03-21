@@ -14,6 +14,7 @@ usage() {
     echo "Where option is one of the following:"
     echo "  - all: Install everything"
     echo "  - bash: Install bashrc"
+    echo "  - git: Install some git configuration"
     echo "  - gnuplot: Install some gnuplot configuration"
     echo "  - mpd: Install some mpd configuration"
     echo "  - ncmpcpp: Install some ncmpcpp configuration"
@@ -27,6 +28,16 @@ bash() {
     echo " + Installing bashrc"
     echo "      cp ./bash/bashrc ~/.bashrc"
     cp ./bash/bashrc ~/.bashrc
+}
+
+git() {
+    echo " + Installing git configuration"
+    echo "      mkdir -p ~/.config/git"
+    echo "      cp ./git/gitconfig ~/.gitconfig"
+    echo "      cp ./git/gitignore ~/.config/git/gitignore"
+    mkdir -p ~/.config/git
+    cp ./git/gitconfig ~/.gitconfig
+    cp ./git/gitignore ~/.config/git/gitignore
 }
 
 gnuplot() {
@@ -112,6 +123,7 @@ zsh() {
 case "$1" in
     "all")
         bash
+        git
         gnuplot
         mpd
         ncmpcpp
@@ -122,6 +134,7 @@ case "$1" in
         ;;
 
     "bash")     bash     ;;
+    "git")      git  ;;
     "gnuplot")  gnuplot  ;;
     "mpd")      mpd      ;;
     "ncmpcpp")  ncmpcpp  ;;
