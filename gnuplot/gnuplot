@@ -4,3 +4,13 @@ load "dark.cfg"
 
 # please, if I load a palette, use it
 set style increment user
+
+# Some utils
+
+min(x, y) = x < y ? x : y
+max(x, y) = x > y ? x : y
+
+t_sign(x,y, x1,y1, x2,y2) = ((x  - x2) * (y1 - y2) - \
+                             (x1 - x2) * (y  - y2)) < 0
+inside_triangle(x,y, x1,y1, x2,y2, x3,y3) = (t_sign(x,y, x1,y1, x2,y2) == t_sign(x,y, x2,y2, x3,y3) && \
+                                             t_sign(x,y, x2,y2, x3,y3) == t_sign(x,y, x3,y3, x1,y1))
