@@ -116,6 +116,7 @@ set smarttab
 " === Scroll === >>>
 set scrolloff=3         " scroll when cursor gets within 3 characters of top/bottom edge
 set sidescrolloff=5     " scroll when cursor gets within 5 characters of left/right edge
+set sidescroll=20       " scroll by 20 characters when scrolling horizontally
 set colorcolumn=80      " highlight the 80 column
 
 " <<<
