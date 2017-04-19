@@ -5,6 +5,10 @@ load "dark.cfg"
 # please, if I load a palette, use it
 set style increment user
 
+# Try to fix the ugly format that happens in logarithmic scales
+set format x "%h"
+set format y "%h"
+
 # Some utils
 
 min(x, y) = x < y ? x : y
