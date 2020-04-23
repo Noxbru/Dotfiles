@@ -91,6 +91,7 @@ fun! SetupCommandAlias(from, to)
 endfun
 call SetupCommandAlias("W","w")
 call SetupCommandAlias("Q","q")
+call SetupCommandAlias("E","e")
 
 " <<<
 " === Indentation === >>>
@@ -142,12 +143,16 @@ autocmd BufReadPost *
 set conceallevel=2
 set concealcursor=inc
 
+" Do not conceal in latex
+let g:tex_conceal = ""
 autocmd Syntax * syntax match IndentLineSpace /^\s\+/ containedin=ALL contains=IndentLine
 autocmd Syntax * syntax match IndentLine / \{3}\zs / contained conceal cchar=¦
 "autocmd Syntax * syntax match IndentLine /\t\zs / contained conceal cchar=¦
 
 highlight Conceal ctermfg=249 ctermbg=NONE
 highlight IndentLine ctermfg=249 ctermbg=NONE
+command SynID  echo synIDattr(synID(line("."), col("."), 1), "name")
+
 " <<<
 " === Basic Configuration === <<<
 " === Plugin Configuration === >>>
