@@ -36,4 +36,7 @@ au! BufRead,BufNewFile *.h setfiletype c
 
 au! BufRead *.tsv setfiletype tsv
 
+" Python files in ModuleSystem are warband_script
+au! BufRead,BufNewFile */ModuleSystem/*.py setfiletype warband_script
+
 augroup END

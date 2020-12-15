@@ -66,14 +66,22 @@ pathogen=(tpope vim-pathogen)
 
 vim_airline=(bling vim-airline)
 
+vim_submode=(kana vim-submode)
+
 vim_glsl=(tikhomirov vim-glsl)
 
 vim_cpp_enhanced_highlight=(octol vim-cpp-enhanced-highlight)
 
 vim_rust=(rust-lang rust.vim)
 vim_racer=(racer-rust vim-racer)
+vim_toml=(cespare vim-toml)
 
 vim_actionscript=(jeroenbourgois vim-actionscript)
+
+python_syntax=(vim-python python-syntax)
+python_fold=(tmhedberg SimpylFold)
+
+how_much=(sk1418 HowMuch)
 
 update_repo nerdtree
 update_repo nerdcommenter
@@ -126,12 +134,18 @@ update_repo pathogen
 
 update_repo vim_airline
 
+update_repo vim_submode
+
 update_repo vim_glsl
 
 update_repo vim_cpp_enhanced_highlight
 
 update_repo vim_rust
 update_repo vim_racer
+update_repo vim_toml
+
+update_repo python_syntax
+update_repo python_fold
 
 
 # XXX
@@ -155,3 +169,5 @@ update_repo vim_racer
 #get_bundle altercation vim-colors-solarized
 
 update_repo vim_actionscript
+
+update_repo how_much

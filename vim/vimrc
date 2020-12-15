@@ -3,7 +3,7 @@ set nocompatible " use Vim settings
 
 syntax on               " Syntax highlighting, please
 filetype plugin on      " Plugins for files, please
-let g:pathogen_disabled = ['matchit']
+let g:pathogen_disabled = ['matchit', 'python-syntax']
 call pathogen#infect()  " Pathogen on!
 
 
@@ -146,11 +146,13 @@ set concealcursor=inc
 " Do not conceal in latex
 let g:tex_conceal = ""
 autocmd Syntax * syntax match IndentLineSpace /^\s\+/ containedin=ALL contains=IndentLine
+autocmd Syntax * syntax match IndentLine /\t\zs /    contained conceal cchar=¦
 autocmd Syntax * syntax match IndentLine / \{3}\zs / contained conceal cchar=¦
-"autocmd Syntax * syntax match IndentLine /\t\zs / contained conceal cchar=¦
 
 highlight Conceal ctermfg=249 ctermbg=NONE
 highlight IndentLine ctermfg=249 ctermbg=NONE
+highlight IndentLineSpace ctermfg=249 ctermbg=NONE
+
 command SynID  echo synIDattr(synID(line("."), col("."), 1), "name")
 
 " <<<
@@ -183,7 +185,8 @@ endif
 "let g:airline_right_sep = '◀'
 let g:airline_left_sep = "\uE0c0 "
 let g:airline_right_sep = "\uE0c2 "
-let g:airline_symbols.linenr = '␤'
+let g:airline_symbols.linenr = "\uE0a1"
+let g:airline_symbols.maxlinenr = ''
 let g:airline_symbols.branch = '⎇'
 let g:airline_symbols.paste = '∥'
 let g:airline_symbols.whitespace = 'Ξ'
@@ -231,6 +234,28 @@ command! NotebookStartPariGP :call NotebookStartPariGP()
     "let g:snipMate.scope_aliases.opencl = get(g:snipMate.scope_aliases, 'opencl', 'c')
 "endif
 
+
+" <<<
+" === Submode === >>>
+let g:submode_always_show_submode = 1
+
+" Create a new submode for resizing windows
+"call submode#enter_with('window', 'n', '', '<C-w>')
+"call submode#leave_with('window', 'n', '', '<ESC>')
+
+" Remap every letter for the window submode
+for key in ['a','b','c','d','e','f','g','h','i','j','k','l','m',
+\           'n','o','p','q','r','s','t','u','v','w','x','y','z']
+  " maps lowercase, uppercase and <C-key>
+  call submode#map('window', 'n', '', key, '<C-w>' . key)
+  call submode#map('window', 'n', '', toupper(key), '<C-w>' . toupper(key))
+  call submode#map('window', 'n', '', '<C-' . key . '>', '<C-w>' . '<C-'.key . '>')
+endfor
+
+" Go through symbols. Sadly, '|', not supported in submode plugin.
+for key in ['=','_','+','-','<','>']
+  call submode#map('window', 'n', '', key, '<C-w>' . key)
+endfor
 
 " <<<
 " === Syntastic === >>>

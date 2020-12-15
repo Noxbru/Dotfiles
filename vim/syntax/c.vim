@@ -10,6 +10,7 @@ hi def link cCustomClass Function
 syn keyword cTodo   NOTE
 
 syn keyword cType   __m64 __m128 __m128i __m128d
+syn keyword cType   mpz_t
 
 
 " FUCK VIM!
