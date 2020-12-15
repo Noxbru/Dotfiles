@@ -62,7 +62,11 @@ source $ZSH/oh-my-zsh.sh
 
 alias kvm="qemu-system-x86_64 -enable-kvm -cpu host"
 alias wine="FREETYPE_PROPERTIES=\"truetype:interpreter-version=35\" wine"
+
 alias wine32="FREETYPE_PROPERTIES=\"truetype:interpreter-version=35\" WINEARCH=win32 WINEPREFIX=~/.wine32 wine"
+alias winecfg32="FREETYPE_PROPERTIES=\"truetype:interpreter-version=35\" WINEARCH=win32 WINEPREFIX=~/.wine32 winecfg"
+alias winetricks32="FREETYPE_PROPERTIES=\"truetype:interpreter-version=35\" WINEARCH=win32 WINEPREFIX=~/.wine32 winetricks"
+alias regedit32="FREETYPE_PROPERTIES=\"truetype:interpreter-version=35\" WINEARCH=win32 WINEPREFIX=~/.wine32 regedit"
 
 export EDITOR=vim
 
