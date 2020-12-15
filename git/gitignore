@@ -28,3 +28,7 @@ tags
 *.so
 *.so.*
 *.dylib
+# TaghHighlight tags
+types_c.taghl
+#python caches
+__pycache__
