@@ -25,12 +25,20 @@ set listchars=eol:¬,tab:\|→,extends:>,precedes:<,trail:·,nbsp:␣
 
 " <<<
 " === Colors === >>>
+let &t_Cs = "\e[4:3m"                   " Activate undercurl
+let &t_Ce = "\e[4:0m"
 set t_Co=256                            " use the terminal with 256 colors
 set background=dark
 colorscheme badwolf
 highlight SpecialKey ctermbg=yellow
 "highlight NonText ctermbg=yellow
 highlight Comment ctermfg=0 ctermbg=239
+
+" Colorize the undercurls of words badly spelled
+highlight SpellBad   ctermul=221
+highlight SpellCap   ctermul=221
+highlight SpellLocal ctermul=221
+highlight SpellRare  ctermul=221
 
 "let g:solarized_style="dark"
 "let g:solarized_termcolors=256
