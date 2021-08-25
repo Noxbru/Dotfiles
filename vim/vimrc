@@ -312,6 +312,8 @@ hi link CTagsUnion              type    " Unions are types
 let g:UltiSnipsJumpForwardTrigger='<Tab>'
 " <<<
 " === YouCompleteMe === >>>
+let g:ycm_clangd_binary_path = "/usr/bin/clangd"
+
 let g:ycm_global_ycm_extra_conf = "~/.vim/.ycm_extra_conf.py"
 let g:ycm_extra_conf_vim_data   = ['&filetype']
 
