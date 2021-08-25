@@ -4,7 +4,7 @@ set nocompatible " use Vim settings
 syntax on               " Syntax highlighting, please
 filetype plugin on      " Plugins for files, please
 let g:pathogen_disabled = ['matchit', 'python-syntax']
-call pathogen#infect()  " Pathogen on!
+execute pathogen#infect()
 
 
 " === Basic === >>>
